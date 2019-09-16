@@ -33,19 +33,20 @@
 		        if ($(this).css("opacity")==1) {$(this).fadeTo(1200,0);}
 		      }
 		    });
+				$(".more").each(function() {
+		      /* Check the location of each desired element */
+		      var objectBottom = $(this).offset().top + $(this).outerHeight();
+
+		      /* If the element is completely within bounds of the window, fade it in */
+		      if (objectBottom < windowBottom) { //object comes into view (scrolling down)
+		        if ($(this).css("opacity")==0) {$(this).fadeTo(800,1);}
+		      } else { //object goes out of view (scrolling up)
+		        if ($(this).css("opacity")==1) {$(this).fadeTo(800,0);}
+		      }
+		    });
 		  }).scroll(); //invoke scroll-handler on page-load
 		});
 	</script>
-	<script>
-        function calculator(){
-            $.ajax({
-              url: "BasicCalculator.py",
-             context: document.body
-            }).done(function() {
-             alert('finished python script');;
-            });
-        }
-    </script>
 	<style type="text/css">
 		.bg-dark
 		{
@@ -88,7 +89,7 @@
 		.skills
 		{
 			text-align: center;
-			padding-top: 200px;
+			padding-top: 80px;
 		}
 		.project1
 		{
@@ -122,12 +123,17 @@
 			border:none;
 			border-radius: 25px;
 		}
+		.more
+		{
+			text-align: center;
+			padding-top: 2em;
+		}
 		.footer
 		{
 			color: white;
 			text-align: center;
 		}
-		i.fa
+		i.fa-angle-double-down
 		{
 			position: relative;
 			 -webkit-animation-name: mover; /* Safari 4.0 - 8.0*/
@@ -214,6 +220,10 @@
 				</article>
 			</li>
 		</ul>
+		<div class="more">
+			<h3>More projects</h3>
+			<a id="fin" href="https://github.com/mjcj31" target="_blank"><i class="fa fa-github fa-4x" aria-hidden="true"></i></a>
+		</div>
 		<div class="skills">
 			<h1 style="font-size: 50px;">Skills:</h1>
 			<ul class="skills-list">
